@@ -29,8 +29,6 @@
 
             settings.TestExecutionTimeout = TimeSpan.FromSeconds(20);
 
-            transportConfig.UnrestrictedDurationDelayedDelivery();
-
             return Task.FromResult(0);
         }
 
