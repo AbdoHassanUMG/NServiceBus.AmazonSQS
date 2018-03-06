@@ -30,7 +30,10 @@
 
         public static IAmazonSQS CreateSQSClient() => new AmazonSQSClient(new AmazonSQSConfig
         {
-            RegionEndpoint = RegionEndpoint.GetBySystemName(EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName) ?? "ap-southeast-2")
+            RegionEndpoint = RegionEndpoint.GetBySystemName(EnvironmentHelper.GetEnvironmentVariable(RegionEnvironmentVariableName) ?? "ap-southeast-2"),
+#if NETCOREAPP2_0
+            CacheHttpClient = false
+#endif
         });
 
         public static IAmazonS3 CreateS3Client() => new AmazonS3Client(new AmazonS3Config
