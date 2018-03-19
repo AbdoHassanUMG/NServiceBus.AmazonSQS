@@ -126,7 +126,6 @@
 
         public const string DelayedDeliveryQueueSuffix = "-delay.fifo";
         public static readonly int AwsMaximumQueueDelayTime = (int)TimeSpan.FromMinutes(15).TotalSeconds;
-        public static readonly TimeSpan DelayedDeliveryQueueMessageRetentionPeriod = TimeSpan.FromDays(4);
 
         ReadOnlySettings settings;
         TimeSpan? maxTTL;

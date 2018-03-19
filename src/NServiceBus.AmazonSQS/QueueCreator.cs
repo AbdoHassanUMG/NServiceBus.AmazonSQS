@@ -85,7 +85,7 @@
                         QueueUrl = createQueueResponse.QueueUrl
                     };
 
-                    sqsAttributesRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, TransportConfiguration.DelayedDeliveryQueueMessageRetentionPeriod.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                    sqsAttributesRequest.Attributes.Add(QueueAttributeName.MessageRetentionPeriod, configuration.MaxTimeToLive.TotalSeconds.ToString(CultureInfo.InvariantCulture));
                     sqsAttributesRequest.Attributes.Add(QueueAttributeName.DelaySeconds, configuration.DelayedDeliveryQueueDelayTime.ToString(CultureInfo.InvariantCulture));
 
                     await sqsClient.SetQueueAttributesAsync(sqsAttributesRequest).ConfigureAwait(false);

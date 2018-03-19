@@ -45,9 +45,10 @@
                     throw new Exception($"Delayed delivery queue '{delayedDeliveryQueueName}' should not have Delivery Delay less than {TimeSpan.FromSeconds(configuration.DelayedDeliveryQueueDelayTime)}.");
                 }
 
-                if (queueAttributes.MessageRetentionPeriod < (int)TransportConfiguration.DelayedDeliveryQueueMessageRetentionPeriod.TotalSeconds)
+                var maxTimeToLive = Convert.ToInt32(configuration.MaxTimeToLive.TotalSeconds);
+                if (queueAttributes.MessageRetentionPeriod < maxTimeToLive)
                 {
-                    throw new Exception($"Delayed delivery queue '{delayedDeliveryQueueName}' should not have Message Retention Period less than {TransportConfiguration.DelayedDeliveryQueueMessageRetentionPeriod}.");
+                    throw new Exception($"Delayed delivery queue '{delayedDeliveryQueueName}' should not have Message Retention Period less than {configuration.MaxTimeToLive}.");
                 }
 
                 if (queueAttributes.Attributes.ContainsKey("RedrivePolicy"))
